@@ -1,51 +1,51 @@
 # SellAuth Discord Bot
 
-Ein moderner Discord-Bot zur Verwaltung von SellAuth Shops und automatischen Krypto-Auszahlungen mit 2FA-Unterstützung.
+A modern Discord bot for managing SellAuth shops and automatic crypto payouts with 2FA support.
 
 ---
 
 ## Features
 
-- **Shop-Management:** Shops auflisten und Statistiken abrufen  
-- **Wallet-Verwaltung:** Wallets verknüpfen und anzeigen  
-- **Krypto-Operationen:** Wallet-Balances, Auszahlungen, Transaktionen ansehen  
-- **Payout mit Modal:** Sichere Auszahlungen per Modal mit Passwort und 2FA-Code  
-- **Automatische Auszahlungen:** Periodische automatische Auszahlungen bei Guthaben  
-- **Set 2FA Code:** Ermöglicht das Setzen und Aktualisieren des 2FA-Codes für sichere Aktionen  
+- **Shop Management:** List shops and fetch statistics  
+- **Wallet Management:** Link and view wallets  
+- **Crypto Operations:** View wallet balances, payouts, transactions  
+- **Payout with Modal:** Secure payouts via modal with password and 2FA code  
+- **Automatic Payouts:** Periodic automatic payouts when balance is available  
+- **Set 2FA Code:** Allows setting and updating the 2FA code for secure actions  
 
 ---
 
 ## Commands
 
 ### /shops list  
-Listet alle deine SellAuth Shops auf.
+Lists all your SellAuth shops.
 
 ### /shops stats `<shopid>`  
-Zeigt Statistiken eines Shops an.
+Displays statistics for a specific shop.
 
 ### /wallet view  
-Zeigt deine verknüpften Wallets an.
+Shows your linked wallets.
 
 ### /wallet link `<address>` `<network>` `<shopid>`  
-Verknüpft oder aktualisiert die Wallet-Adresse für einen Shop.
+Links or updates the wallet address for a shop.
 
 ### /crypto balances `<shopid>`  
-Zeigt die Guthaben der Wallet an.
+Displays the wallet balances.
 
 ### /crypto payouts `<shopid>`  
-Zeigt die letzten Auszahlungen.
+Shows recent payouts.
 
 ### /crypto transactions `<shopid>`  
-Zeigt die letzten Transaktionen.
+Shows recent transactions.
 
 ### /crypto payout  
-Startet ein Modal zur Eingabe der Auszahlung mit folgenden Feldern:  
+Starts a modal to input payout details with the following fields:  
 - Shop ID  
-- Currency (btc oder ltc)  
-- Wallet-Adresse  
-- Betrag  
-- SellAuth Passwort  
-- 2FA Code  
+- Currency (btc or ltc)  
+- Wallet address  
+- Amount  
+- SellAuth password  
+- 2FA code  
 
 ---
 
@@ -53,62 +53,60 @@ Startet ein Modal zur Eingabe der Auszahlung mit folgenden Feldern:
 
 ### /set2fa `<shopid>` `<tfa_code>`  
 
-Mit diesem Command kannst du den 2FA-Code für deinen Shop setzen oder aktualisieren. Dies ist notwendig, damit automatische oder manuelle Auszahlungen den korrekten 2FA-Code verwenden können.
+This command lets you set or update the 2FA code for your shop. This is required so that automatic or manual payouts use the correct 2FA code.
 
-**Beispiel:**  
+**Example:**  
 /set2fa 157322 123456
-
 
 ---
 
 ## Installation & Setup
 
-1. Klone das Repository  
-2. Installiere die Abhängigkeiten:  
+1. Clone the repository  
+2. Install dependencies:  
 
+```bash
 npm install
+```
 
-3. Lege eine `.env` Datei an und fülle die Variablen aus:  
-DISCORD_TOKEN=DeinDiscordBotToken
-CLIENT_ID=DeineDiscordClientID
-SELLAUTH_API_KEY=DeinSellAuthApiKey
+3. Create a `.env` file and fill in the variables:  
+```
+DISCORD_TOKEN=YourDiscordBotToken
+CLIENT_ID=YourDiscordClientID
+SELLAUTH_API_KEY=YourSellAuthApiKey
+```
 
-4. Starte den Bot:  
+4. Start the bot:  
+```bash
 node sellauthbot.js
-
-yaml
-Kopieren
-Bearbeiten
+```
 
 ---
 
-## Automatische Auszahlungen
+## Automatic Payouts
 
-Der Bot prüft alle 60 Sekunden die Guthaben verknüpfter Wallets und führt bei vorhandenem Guthaben eine Auszahlung aus. Dafür muss ein gültiger 2FA-Code gesetzt sein (siehe `/set2fa`).
-
----
-
-## Sicherheitshinweis
-
-- Das SellAuth Passwort und der 2FA-Code werden nur über sichere Modals abgefragt und nicht im Klartext gespeichert.  
-- Bitte verwalte deine Zugangsdaten sicher.  
+The bot checks linked wallet balances every 60 seconds and executes a payout if balance is available. A valid 2FA code must be set (see `/set2fa`).
 
 ---
 
-## Mitwirkende
+## Security Notice
+
+- The SellAuth password and 2FA code are requested only through secure modals and are not stored in plain text.  
+- Please keep your credentials safe.
+
+---
+
+## Contributors
 
 - Mado
 
 ---
 
-## Lizenz
+## License
 
 MIT License
 
-
-
-
-
+---
 
 ## Auto Payouts
 
@@ -120,7 +118,8 @@ The bot can automatically send payouts from linked wallets every 60 seconds if a
 
 - discord.js  
 - node-fetch  
-- dotenv
+- dotenv  
+- otplib (for 2FA code generation)
 
 ---
 
